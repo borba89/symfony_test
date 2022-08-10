@@ -1,0 +1,41 @@
+{{ include('layout/header.html.twig') }}
+
+
+<h1 class="h1 text-center mt-5 mb-5">Disciplines list</h1>
+
+<div class="container">
+
+<a href="{{ path('teacher_create') }}" class="btn btn-success mb-3">Create teacher</a>
+
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Avatar</th>
+        <th scope="col">Disciplines</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for teacher in teachers %}
+        <tr>
+            <th scope="row">{{ teacher.id }}</th>
+            <td>{{ teacher.name }}</td>
+            <td>{{ teacher.surname }}</td>
+            <td>{{ teacher.email }}</td>
+            <td>{% if teacher.avatar != '' %}<img src="/{{ teacher.avatar }}" >{% endif %}</td>
+            <td>{% if teacher.disciplines != null %}{% for discipline in teacher.disciplines %}{{ discipline.title }}<br>{% endfor %}{% endif %}</td>
+            <td>
+                <a href="{{ path('teacher_update', { 'id' : teacher.id } ) }}" class="btn btn-warning">Edit</a>
+                <a href="{{ path('teacher_delete', { 'id' : teacher.id } ) }}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{{ include('layout/footer.html.twig') }}

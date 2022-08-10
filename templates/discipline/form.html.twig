@@ -1,0 +1,38 @@
+{{ form_start(form) }}
+{{ form_errors(form.title) }}
+<div class="mb-3">
+    {{ form_label(form.title, null, {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+
+</div>
+<div class="mb-3">
+    {{ form_label(form.datastartAt, null, {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.datastartAt, {'attr': {'class': 'js-datepicker'}}) }}
+
+</div>
+<div class="mb-3">
+    {{ form_label(form.dataendAt, null, {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.dataendAt, {'attr': {'widget' : 'single_text',
+
+        'html5' : false, 'class': 'js-datepicker'}}) }}
+</div>
+
+    {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+
+{{ form_end(form) }}
+
+<script>
+    $(document).ready(function() {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        /*$('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });*/
+    });
+</script>
+
+<style>
+    li{
+        list-style: none;
+        color:red;
+    }
+</style>

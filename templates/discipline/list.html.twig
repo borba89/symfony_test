@@ -1,0 +1,33 @@
+{{ include('layout/header.html.twig') }}
+
+<h1 class="h1 text-center mt-5 mb-5">Disciplines list</h1>
+<div class="container">
+<a href="{{ path('discipline_create') }}" class="btn btn-success mb-3">Create discipline</a>
+
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Data start</th>
+        <th scope="col">Data end</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for discipline in disciplines %}
+        <tr>
+            <th scope="row">{{ discipline.id }}</th>
+            <td>{{ discipline.title }}</td>
+            <td>{{ discipline.datastartAt | date('d.m.Y') }}</td>
+            <td>{{ discipline.dataendAt | date('d.m.Y') }}</td>
+            <td>
+                <a href="{{ path('discipline_update', { 'id' : discipline.id } ) }}" class="btn btn-warning">Edit</a>
+                <a href="{{ path('discipline_delete', { 'id' : discipline.id } ) }}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{{ include('layout/footer.html.twig') }}
